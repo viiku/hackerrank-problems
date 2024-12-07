@@ -16,19 +16,19 @@ class Person {
     private int age;
 
     // Default constructor
-    public Person() {  // private constructors results in error
+    public Person() {  
         name = "Unknown";
         age = 0;
     }
 
     // Parameterized constructor
-    public Person(String name, int age) {  // private constructors results in error
+    public Person(String name, int age) {  
         this.name = name;
         this.age = age;
     }
 
     // Copy constructor (constructor that takes an object of the same class)
-    public Person(Person c) {  // private constructors results in error
+    public Person(Person c) {  
         this.name = c.name;
         this.age = c.age;
     }
@@ -44,4 +44,36 @@ class Codechef {
     }
 }
 
+```
+
+#### private type constructors
+constructors in Java can be private. A private constructor is used to restrict the instantiation of a class from outside of the class itself.
+
+Here are some common scenarios where a private constructor is used:
+
+1. Singleton Pattern: This design pattern restricts a class to having only one instance. By making the constructor private, you can control how and when the instance is created.
+
+2. Factory Method Pattern: When you want to control the object creation and provide a method for object creation rather than using the new keyword directly.
+
+3. Static Methods or Constants: If a class contains only static methods and constants, you can use a private constructor to prevent instantiation.
+
+4. Utility Classes: Classes that provide static methods and are not meant to be instantiated can have private constructors.
+
+```
+public class Singleton {
+    // Static variable to hold the single instance
+    private static Singleton instance;
+
+    // Private constructor to restrict instantiation
+    private Singleton() {
+    }
+
+    // Public method to provide access to the instance
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
 ```
