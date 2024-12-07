@@ -211,3 +211,65 @@ class Codechef {
 2. The Dog and Cat classes are subclasses of Animal. They override the makeSound method with their own implementations.
 3. In the main method, we create instances of both Dog and Cat but store them in variables of type Animal. This is an example of polymorphism, where objects of different classes are treated as objects of a common superclass.
 4. When we call the makeSound method on animal1 and animal2, Java determines which version of the method to call based on the actual runtime type of the objects. As a result, the overridden makeSound method in the respective subclass is executed, demonstrating method overriding.
+
+
+#### Multilevel inheritance
+```
+// Base class
+class Student {
+    private String studentName;
+
+    public Student(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public void displayDetails() {
+        System.out.println(studentName);
+    }
+}
+
+// Graduate class (inherits from Student)
+class Graduate extends Student {
+    private int graduationYear;
+
+    public Graduate(String studentName, int graduationYear) {
+        super(studentName);
+        this.graduationYear = graduationYear;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println(graduationYear);
+    }
+}
+
+// Postgraduate class (inherits from Graduate)
+class Postgraduate extends Graduate {
+    private String thesisTopic;
+
+    public Postgraduate(String studentName, int graduationYear, String thesisTopic) {
+        super(studentName, graduationYear);
+        this.thesisTopic = thesisTopic;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println(thesisTopic);
+    }
+}
+
+class Codechef {
+    public static void main(String[] args) {
+        // Create instances of Student and Postgraduate
+        Student student = new Student("Alice");
+        Postgraduate postgraduate = new Postgraduate("Carol", 2025, "Quantum Mechanics");
+
+        // Display details of each student type
+        student.displayDetails();
+        System.out.println();
+        postgraduate.displayDetails();
+    }
+}
+```
