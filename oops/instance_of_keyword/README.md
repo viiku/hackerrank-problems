@@ -1,0 +1,1 @@
+The Java instanceof operator is used to test if the object or instance is an instanceof the specified type.
