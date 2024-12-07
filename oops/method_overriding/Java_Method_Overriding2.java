@@ -15,13 +15,11 @@ class Cycle extends MotorCycle {
     }
 }
 
-class 
 public class Solution {
 
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         Cycle cycle = new Cycle();
-        cycle.super.getName();
         cycle.getName();
     }
 }
