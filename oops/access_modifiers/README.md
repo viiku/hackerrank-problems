@@ -54,3 +54,10 @@ Non-Access Modifiers - do not control access level, but provides other functiona
 `private`	The code is only accessible within the declared class	
 `default`	The code is only accessible in the same package. This is used when you don't specify a modifier. 
 `protected`	The code is accessible in the same package and subclasses
+
+
+### Instance Variable
+What is an instance variable in Java?
+A variable declared within a class but outside any method; it belongs to an instance of the class.
+Explanation:
+Instance variables, also known as member variables or fields, are declared within a class but outside any method. They belong to instances (objects) of the class and can have different values for each instance.
