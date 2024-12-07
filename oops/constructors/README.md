@@ -77,3 +77,9 @@ public class Singleton {
     }
 }
 ```
+
+### Constructors calling
+when you create an object of a derived class, the constructor of the base class is called before the constructor of the derived class. This ensures that the base class is fully constructed before any additional construction specific to the derived class takes place. This is known as constructor chaining.
+
+### super 
+super keyword is used to explicitly call a superclass constructor from a subclass constructor.
