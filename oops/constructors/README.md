@@ -16,19 +16,19 @@ class Person {
     private int age;
 
     // Default constructor
-    public Person() {
+    public Person() {  // private constructors results in error
         name = "Unknown";
         age = 0;
     }
 
     // Parameterized constructor
-    public Person(String name, int age) {
+    public Person(String name, int age) {  // private constructors results in error
         this.name = name;
         this.age = age;
     }
 
     // Copy constructor (constructor that takes an object of the same class)
-    public Person(Person c) {
+    public Person(Person c) {  // private constructors results in error
         this.name = c.name;
         this.age = c.age;
     }
