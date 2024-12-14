@@ -1,0 +1,130 @@
+// User Model
+package com.example.demo.model;
+
+public class User {
+    private Long id;
+    private String name;
+    private String email;
+
+    // Constructors
+    public User() {}
+
+    public User(Long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+}
+
+// Repository (Simulating Data Access)
+package com.example.demo.repository;
+
+import com.example.demo.model.User;
+import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class UserRepository {
+    private List<User> users = new ArrayList<>();
+
+    public UserRepository() {
+        // Populate with some initial data
+        users.add(new User(1L, "John Doe", "john@example.com"));
+        users.add(new User(2L, "Jane Smith", "jane@example.com"));
+    }
+
+    public List<User> findAll() {
+        return users;
+    }
+
+    public User findById(Long id) {
+        return users.stream()
+            .filter(user -> user.getId().equals(id))
+            .findFirst()
+            .orElse(null);
+    }
+}
+
+// Service Layer
+package com.example.demo.service;
+
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+}
+
+// Controller (Request Handler)
+package com.example.demo.controller;
+
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    // GET all users: http://localhost:8080/api/users
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    // GET user by ID: http://localhost:8080/api/users/1
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+}
+
+// Main Application Class
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+}
